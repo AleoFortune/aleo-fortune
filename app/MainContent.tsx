@@ -1,8 +1,13 @@
 "use client";
-import RouletteWheel from "@/components/RouletteWheel/RouletteWheel";
+
+const RouletteWheel = dynamic(
+  () => import("@/components/RouletteWheel/RouletteWheel"),
+  { ssr: false }
+);
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
 
 type Props = { className?: string };
