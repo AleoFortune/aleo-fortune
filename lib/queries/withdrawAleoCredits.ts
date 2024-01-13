@@ -1,9 +1,7 @@
-import { EventType, PuzzleAccount, requestCreateEvent } from "@puzzlehq/sdk";
-import { useState } from "react";
+import { PuzzleAccount } from "@puzzlehq/sdk";
 import { AleoWorker } from "../workers/AleoWorker.js";
 
 const aleoWorker = AleoWorker();
-const [executing, setExecuting] = useState(false);
 
 export const withdrawAleoCredit = async (
   account: PuzzleAccount,
@@ -13,15 +11,11 @@ export const withdrawAleoCredit = async (
     alert("no account");
     return;
   }
-
-  setExecuting(true);
   const result = await aleoWorker.localProgramExecution(
     "credits.aleo",
     "transfer_public",
     [account, value],
   );
-  setExecuting(false);
-
   alert(JSON.stringify(result));
 };
 
