@@ -38,9 +38,9 @@ const RightBar = (props: Props) => {
       {account && (
         <div className="flex flex-col gap-4 ">
           <div className="flex border-2  px-2 py-2 justify-between items-center rounded-sm ">
-            <p className="font-bold text-xl">Balance</p>
+            <p className="font-bold text-base">Balance</p>
             {
-              <Badge variant={"default"} className="text-xl">
+              <Badge variant={"default"} className="text-sm">
                 {isLoading
                   ? "Getting Balance"
                   : `${fortuneCredit} Fortune Credits`}
