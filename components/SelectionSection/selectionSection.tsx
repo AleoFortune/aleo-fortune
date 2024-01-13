@@ -33,6 +33,7 @@ const SelectionSection = (props: Props) => {
           console.log(item.style.backgroundColor);
           return (
             <div
+              key={index}
               className={cn(
                 `${
                   item.style.backgroundColor == "black"
