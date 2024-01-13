@@ -1,15 +1,10 @@
 // The 'roulette' program.
-program cassino_game_test_fp.aleo {
+program cassino_game_final.aleo {
 
     mapping account: address => u64;
     mapping random_number_map: address=>u32;
     mapping winner: address=>bool;
     const cassino_address: address = aleo1696yxs062yrm0nmvflwcp7zjy0l8l4w8gpr3wn0ql3nttu54ayqsuxqus5;
-
-  record WAC {
-    owner: address,
-    amount: u64,
-  }
 
   transition deposit_public(public receiver: address, public amount: u64) {
     return then finalize(receiver, amount);
@@ -20,77 +15,18 @@ program cassino_game_test_fp.aleo {
     Mapping::set(account, receiver, receiver_amount + amount);
   }
 
-  transition desposit_private(receiver: address, amount: u64) -> WAC {
-    return WAC {
-      owner: receiver,
-      amount: amount,
-    };
-  }
-
   transition withdraw_public(public receiver: address, public amount: u64) {
-    return then finalize(self.caller, receiver, amount);
+    return then finalize(cassino_address, self.caller, amount);
   }
 
   finalize withdraw_public(public sender: address, public receiver: address, public amount: u64) {
     let sender_amount: u64 = Mapping::get_or_use(account, sender, 0u64);
-    Mapping::set(account, sender, sender_amount - amount);
-
+    assert(sender_amount >= amount);
+    Mapping::set(account, sender, sender_amount + amount);
     let receiver_amount: u64 = Mapping::get_or_use(account, receiver, 0u64);
-    Mapping::set(account, receiver, receiver_amount + amount);
+    assert(receiver_amount >= amount);
+    Mapping::set(account, receiver, receiver_amount - amount);
   }
-
-  transition withdraw_private(sender: WAC, receiver: address, amount: u64) -> (WAC, WAC) {
-    let difference: u64 = sender.amount - amount;
-
-    let remaining: WAC = WAC {
-      owner: sender.owner,
-      amount: difference,
-    };
-
-    let transferred: WAC = WAC {
-      owner: receiver,
-      amount: amount,
-    };
-
-    return (remaining, transferred);
-  }
-
-  // transition random_number_generate(public player: address){
-  //   return then finalize(self.caller);
-  // }
-  // finalize random_number_generate(public player: address) {
-  //   let random_number: u32 = ChaCha::rand_u32();
-  //   let random_number_mod37: u32 = random_number % 37u32; // 0 to 36
-  //   Mapping::set(random_number_map, player, random_number_mod37);
-  // }
-
-
-  // transition make_odd_even_bet_private(player: WAC, bet_amount: u64, bet: u32, public random_number: u32)->(WAC, WAC) {
-  //         let win: bool = (random_number % 2u32) == bet;
-  //         let player_balance: u64 = player.amount;
-  //         let casino_balance: u64 = casino.amount;
-
-
-  //         if (win) {
-  //           player_balance += bet_amount;
-  //           casino_balance -= bet_amount;
-  //         }
-  //         else {
-  //           player_balance -= bet_amount;
-  //           casino_balance += bet_amount;
-  //         }
-
-  //           let updated_player_WAC: WAC = WAC {
-  //             owner: player.owner,
-  //             amount: player_balance
-  //           };
-
-  //           let updated_casino_WAC: WAC = WAC {
-  //             owner: cassino_address,
-  //             amount: casino_balance
-  //           };
-  //   return (updated_player_WAC, updated_casino_WAC);
-  // }
 
   transition make_odd_even_bet_public(
         public bet_amount: u64,
@@ -118,6 +54,8 @@ program cassino_game_test_fp.aleo {
         let current_casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
 
         assert(current_player_amount > bet_amount);
+        assert(current_casino_balance > bet_amount);
+
     
         if (win) {
             current_player_amount += bet_amount;
@@ -154,7 +92,8 @@ program cassino_game_test_fp.aleo {
         let current_player_amount: u64 = Mapping::get_or_use(account, player, 0u64);
         let current_casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
 
-        // assert(current_player_amount > bet_amount);
+        assert(current_player_amount >= bet_amount);
+        assert(current_casino_balance >= 35u64*bet_amount);
     
         if (win) {
           current_player_amount += 35u64*bet_amount;
@@ -173,9 +112,6 @@ program cassino_game_test_fp.aleo {
     public bet_on_red: bool,
 
 ){
-    assert(bet_amount > 0u64);
-
-
     return then finalize(cassino_address, bet_amount, bet_on_red, self.caller);
 }
 
@@ -200,20 +136,21 @@ finalize make_red_black_bet_public(
     Mapping::set(winner, player, win);
 
     let current_player_amount: u64 = Mapping::get_or_use(account, player, 0u64);
-    let casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
+    let current_casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
 
     assert(current_player_amount >= bet_amount);
+    assert(current_casino_balance >= bet_amount);
 
     if (win) {
         current_player_amount += bet_amount;
-        casino_balance -= bet_amount;
+        current_casino_balance -= bet_amount;
     } else {
         current_player_amount -= bet_amount;
-        casino_balance += bet_amount;
+        current_casino_balance += bet_amount;
     }
 
     Mapping::set(account, player, current_player_amount);
-    Mapping::set(account, casino_owner, casino_balance);
+    Mapping::set(account, casino_owner, current_casino_balance);
 }
 
 
@@ -255,20 +192,21 @@ transition make_dozen_bet_public(
     Mapping::set(winner, player, win);
 
     let current_player_amount: u64 = Mapping::get_or_use(account, player, 0u64);
-    let casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
+    let current_casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
 
     assert(current_player_amount >= bet_amount);
+    assert(current_casino_balance >= 2u64*bet_amount);
 
     if (win) {
         current_player_amount += bet_amount * 2u64; // Double the bet amount as reward
-        casino_balance -= bet_amount * 2u64;
+        current_casino_balance -= bet_amount * 2u64;
     } else {
         current_player_amount -= bet_amount;
-        casino_balance += bet_amount;
+        current_casino_balance += bet_amount;
     }
 
     Mapping::set(account, player, current_player_amount);
-    Mapping::set(account, casino_owner, casino_balance);
+    Mapping::set(account, casino_owner, current_casino_balance);
   }
 
 
@@ -279,8 +217,6 @@ transition make_dozen_bet_public(
     public bet_amount: u64,
     public bet_on_low: bool,
   ){
-    assert(bet_amount > 0u64);
-
     return then finalize(cassino_address, bet_amount, bet_on_low, self.caller);
   }
 
@@ -305,20 +241,21 @@ transition make_dozen_bet_public(
     Mapping::set(winner, player, win);
 
     let current_player_amount: u64 = Mapping::get_or_use(account, player, 0u64);
-    let casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
+    let current_casino_balance: u64 = Mapping::get_or_use(account, casino_owner, 0u64);
 
     assert(current_player_amount >= bet_amount);
+    assert(current_casino_balance >= bet_amount);
 
     if (win) {
         current_player_amount += bet_amount; // Equal the bet amount as reward
-        casino_balance -= bet_amount;
+        current_casino_balance -= bet_amount;
     } else {
         current_player_amount -= bet_amount;
-        casino_balance += bet_amount;
+        current_casino_balance += bet_amount;
     }
 
     Mapping::set(account, player, current_player_amount);
-    Mapping::set(account, casino_owner, casino_balance);
+    Mapping::set(account, casino_owner, current_casino_balance);
   }
   
 }
