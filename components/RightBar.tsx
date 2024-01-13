@@ -48,6 +48,10 @@ const RightBar = (props: Props) => {
             }
           </div>
           <AddCreditDialog />
+
+          <p>game rules</p>
+          <p>get aleo</p>
+          <p>withdraw</p>
         </div>
       )}
     </Card>

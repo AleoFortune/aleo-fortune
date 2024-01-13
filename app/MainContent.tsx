@@ -19,8 +19,14 @@ const MainContent = (props: Props) => {
   const [prizeNumber, setPrizeNumber] = useState(random);
 
   return (
-    <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-6")}>
+    <Card
+      className={cn(
+        props.className,
+        "mt-4 rounded-lg px-4 py-6 flex justify-center"
+      )}
+    >
       <SelectionSection />
+      <RouletteWheel startSpin={startSpin} prizeNumber={5} />
       {/* <RouletteWheel prizeNumber={prizeNumber} startSpin={startSpin} /> */}
     </Card>
   );

@@ -21,7 +21,7 @@ const SelectionSection = (props: Props) => {
   const orderedData = reorderArray(data);
 
   return (
-    <div className="mr-auto w-96 flex items-stretch">
+    <div className="w-96 flex h-[600px]">
       <div className="mt-[46px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white"></div>
       <div className="grid grid-cols-3 w-full">
         <div className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
@@ -30,7 +30,6 @@ const SelectionSection = (props: Props) => {
 
         {orderedData.map((item, index) => {
           if (item.option == "0") return;
-          console.log(item.style.backgroundColor);
           return (
             <div
               key={index}
