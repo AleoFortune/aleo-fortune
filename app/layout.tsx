@@ -6,6 +6,8 @@ import { PuzzleWalletProvider } from "@puzzlehq/sdk";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,10 +34,10 @@ export default function RootLayout({
               <Header />
               {children}
               {/* <Footer /> */}
+              <Toaster />
             </ThemeProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
           </body>
-
-          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </PuzzleWalletProvider>
     </html>
