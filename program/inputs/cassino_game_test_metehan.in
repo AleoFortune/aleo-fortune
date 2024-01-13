@@ -1,0 +1,12 @@
+[deposit_public]
+public reciever: address = aleo1v7nuwtqnksjp7x59r936rlk5uew7zrlu0hsvflpagkep5k5qugyqw2xwa9;
+amount: u64 = 10u64;
+
+[make_odd_even_bet_public]
+casino_owner: address = aleo1696yxs062yrm0nmvflwcp7zjy0l8l4w8gpr3wn0ql3nttu54ayqsuxqus5;
+bet_amount: u64 = 10u64;
+bet: u32 = 0u32;
+
+[random_number_generate]
+public player: address = aleo1v7nuwtqnksjp7x59r936rlk5uew7zrlu0hsvflpagkep5k5qugyqw2xwa9;
+
