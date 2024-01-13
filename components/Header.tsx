@@ -26,6 +26,7 @@ const Header = (props: Props) => {
     >
       <div className="container  flex justify-between items-center h-full">
         <h3>ALEO FORTUNE</h3>
+        <h3>roulette.</h3>
 
         {!account && (
           <Button size={"lg"} onClick={connect}>

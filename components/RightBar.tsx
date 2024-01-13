@@ -7,6 +7,7 @@ import { useAccount, connect } from "@puzzlehq/sdk";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import AddCreditDialog from "./addCreditDialog";
 type Props = { className?: string };
 
 const RightBar = (props: Props) => {
@@ -34,15 +35,18 @@ const RightBar = (props: Props) => {
       )}
 
       {account && (
-        <div className="flex gap-2 border  px-2 py-2 justify-between items-center rounded-sm">
-          <p className="font-bold text-xl">Balance</p>
-          {
-            <Badge variant={"default"} className="text-xl">
-              {isLoading
-                ? "Getting Balanace"
-                : `${fortuneCredit} Fortune Credits`}
-            </Badge>
-          }
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-2 border  px-2 py-2 justify-between items-stretch rounded-sm ">
+            <p className="font-bold text-xl">Balance</p>
+            {
+              <Badge variant={"default"} className="text-xl">
+                {isLoading
+                  ? "Getting Balance"
+                  : `${fortuneCredit} Fortune Credits`}
+              </Badge>
+            }
+          </div>
+          <AddCreditDialog />
         </div>
       )}
     </Card>

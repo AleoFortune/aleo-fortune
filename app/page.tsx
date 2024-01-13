@@ -7,7 +7,7 @@ import RightBar from "@/components/RightBar";
 export default function Home() {
   return (
     <main className="flex gap-6 h-[calc(100vh-12rem)]" suppressHydrationWarning>
-      <LeftBar className="w-96 " />
+      <LeftBar className="w-48 " />
       <MainContent className="flex-grow" />
       <RightBar className="w-96 " />
     </main>
