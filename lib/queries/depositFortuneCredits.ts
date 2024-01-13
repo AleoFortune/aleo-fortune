@@ -22,7 +22,7 @@ export const depositFortuneCredit = async (
     inputs: Object.values(fields),
   });
   if (createEventResponse.error) {
-    alert(JSON.stringify(createEventResponse));
+    console.log(createEventResponse.error);
   } else {
     alert(JSON.stringify(createEventResponse));
     console.log(createEventResponse);

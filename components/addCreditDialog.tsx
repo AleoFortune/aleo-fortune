@@ -12,6 +12,8 @@ import { Input } from "./ui/input";
 import { useAccount } from "@puzzlehq/sdk";
 import { useMutation } from "@tanstack/react-query";
 import { depositFortuneCredit } from "@/lib/queries/depositFortuneCredits";
+import Spinner from "./ui/spinner";
+import { toast } from "sonner";
 
 type Props = {};
 
@@ -26,9 +28,11 @@ const AddCreditDialog = (props: Props) => {
       depositFortuneCredit(account!, parseInt(creditInputRef.current!.value)),
     onSuccess(data, variables, context) {
       setOpen(false);
+      toast.success("Deposit Successful");
     },
     onError(error, variables, context) {
       console.log(error);
+      toast.error("Deposit Failed:");
     },
   });
 
@@ -37,13 +41,24 @@ const AddCreditDialog = (props: Props) => {
     if (creditInputRef.current?.value === "" || 0) return;
 
     if (parseInt(creditInputRef.current!.value) > 50) {
-      alert("Max 50 credits");
+      toast.error("Max 50 credits", {
+        duration: 2500,
+        dismissible: true,
+        important: true,
+        action: {
+          label: "Delete",
+          onClick: () => {
+            toast.dismiss();
+          },
+        },
+      });
+      return;
     }
     depositMutation.mutate();
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger>
         <Button>Add More Credits</Button>
       </DialogTrigger>
@@ -53,13 +68,22 @@ const AddCreditDialog = (props: Props) => {
           <DialogDescription asChild>
             <div className="flex gap-6 w-full mt-2">
               <div className="w-full">
-                <Input ref={creditInputRef} type="number" />
-
+                <Input
+                  ref={creditInputRef}
+                  type="number"
+                  maxLength={2}
+                  min={0}
+                  max={50}
+                />
                 <p className="text-xs font-bold mt-2">
-                  Max: 50 credits, current fee:3.5 ALEO TOKEN
+                  Max: 50 credits, current fee: 3.5 ALEO TOKEN
                 </p>
               </div>
-              <Button onClick={handleDeposit}>Deposit</Button>
+              {depositMutation.isLoading ? (
+                !depositMutation.isSuccess && <Spinner />
+              ) : (
+                <Button onClick={handleDeposit}>Deposit</Button>
+              )}
             </div>
           </DialogDescription>
         </DialogHeader>
