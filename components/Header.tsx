@@ -8,6 +8,9 @@ import {
   shortenAddress,
   useDisconnect,
 } from "@puzzlehq/sdk";
+import Image from "next/image";
+import aleoFortuneLogo from "@/assets/fortune-logo.png";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 type Props = {
   className?: string;
@@ -19,14 +22,24 @@ const Header = (props: Props) => {
 
   return (
     <div
+      suppressHydrationWarning
       className={cn(
         props.className,
         "h-24 font-bold text-2xl border-b-[1px] border-gray-500 bg-muted"
       )}
     >
-      <div className="container  flex justify-between items-center h-full">
-        <h3>ALEO FORTUNE</h3>
-        <h3>roulette.</h3>
+      <div className="flex justify-between items-center h-full px-4">
+        <div className="flex gap-2 items-center">
+          <div className="rounded-full overflow-hidden">
+            <Image
+              alt="aleo fortune logo"
+              src={aleoFortuneLogo}
+              width={80}
+            ></Image>
+          </div>
+          <h3>ALEO FORTUNE</h3>
+        </div>
+        {/* <h3>roulette.</h3> */}
 
         {!account && (
           <Button size={"lg"} onClick={connect}>
