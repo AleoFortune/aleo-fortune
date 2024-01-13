@@ -23,7 +23,7 @@ const SelectionSection = (props: Props) => {
   return (
     <div className="mr-auto w-60 flex items-stretch">
       <div className="grid grid-cols-3 w-full">
-        <div className="col-span-3 bg-green-700 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
+        <div className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
           <p className="font-bold text-lg">0</p>
         </div>
 
@@ -40,7 +40,7 @@ const SelectionSection = (props: Props) => {
                 } flex justify-center border border-white ${
                   selection == item.option ? "bg-green-500" : ""
                 } py-2 ${
-                  index == 34 ? "rounded-bl-sm" : index == 36 && "rounded-br-sm"
+                  index == 34 ? "rounded-bl-sm" : index == 36 && ""
                 } hover:scale-110 transition-all cursor-pointer`
               )}
               onClick={() => setSelection(item.option)}
@@ -52,14 +52,14 @@ const SelectionSection = (props: Props) => {
           );
         })}
       </div>
-      <div className="mt-[46px] text-center flex flex-col justify-betwee w-24">
-        <div className="flex-1 text-center flex items-center  justify-center px-2">
+      <div className="mt-[46px] text-center flex flex-col justify-betwee w-24 bg-green-900 border border-white rounded-tr-sm rounded-br-sm">
+        <div className="flex-1 text-center flex items-center  justify-center px-2 border-b border-white cursor-pointer ">
           1st 12
         </div>
-        <div className="flex-1 text-center flex items-center justify-center px-2">
+        <div className="flex-1 text-center flex items-center justify-center px-2 border-b border-white cursor-pointer ">
           2nd 12
         </div>
-        <div className="flex-1 text-center flex items-center justify-center px-2">
+        <div className="flex-1 text-center flex items-center justify-center px-2 cursor-pointer ">
           3rd 12
         </div>
       </div>
