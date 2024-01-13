@@ -21,7 +21,8 @@ const SelectionSection = (props: Props) => {
   const orderedData = reorderArray(data);
 
   return (
-    <div className="mr-auto w-60 flex items-stretch">
+    <div className="mr-auto w-96 flex items-stretch">
+      <div className="mt-[46px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white"></div>
       <div className="grid grid-cols-3 w-full">
         <div className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
           <p className="font-bold text-lg">0</p>
@@ -32,6 +33,7 @@ const SelectionSection = (props: Props) => {
           console.log(item.style.backgroundColor);
           return (
             <div
+              key={index}
               className={cn(
                 `${
                   item.style.backgroundColor == "black"
@@ -52,14 +54,29 @@ const SelectionSection = (props: Props) => {
           );
         })}
       </div>
-      <div className="mt-[46px] text-center flex flex-col justify-betwee w-24 bg-green-900 border border-white rounded-tr-sm rounded-br-sm">
-        <div className="flex-1 text-center flex items-center  justify-center px-2 border-b border-white cursor-pointer ">
+      <div className="mt-[46px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white rounded-tr-sm rounded-br-sm">
+        <div
+          className={`flex-1 text-center flex items-center rounded-tr-sm justify-center px-2 border-b border-white cursor-pointer ${
+            selection == "1st" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("1st")}
+        >
           1st 12
         </div>
-        <div className="flex-1 text-center flex items-center justify-center px-2 border-b border-white cursor-pointer ">
+        <div
+          className={`flex-1 text-center flex items-center justify-center px-2 border-b border-white cursor-pointer ${
+            selection == "2nd" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("2nd")}
+        >
           2nd 12
         </div>
-        <div className="flex-1 text-center flex items-center justify-center px-2 cursor-pointer ">
+        <div
+          className={`flex-1 text-center flex items-center justify-center px-2 cursor-pointer ${
+            selection == "3rd" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("3rd")}
+        >
           3rd 12
         </div>
       </div>
