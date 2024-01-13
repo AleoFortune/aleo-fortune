@@ -16,13 +16,10 @@ program cassino_game_final.aleo {
   }
 
   transition withdraw_public(public receiver: address, public amount: u64) {
-    return then finalize(cassino_address, self.caller, amount);
+    return then finalize(self.caller, amount);
   }
 
-  finalize withdraw_public(public sender: address, public receiver: address, public amount: u64) {
-    let sender_amount: u64 = Mapping::get_or_use(account, sender, 0u64);
-    assert(sender_amount >= amount);
-    Mapping::set(account, sender, sender_amount + amount);
+  finalize withdraw_public(public receiver: address, public amount: u64) {
     let receiver_amount: u64 = Mapping::get_or_use(account, receiver, 0u64);
     assert(receiver_amount >= amount);
     Mapping::set(account, receiver, receiver_amount - amount);
