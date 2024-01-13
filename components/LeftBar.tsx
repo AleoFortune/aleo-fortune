@@ -39,10 +39,10 @@ const LeftBar = (props: Props) => {
             You may also check executions in your Puzzle Wallet extension
           </p>
           {isLoading && <Spinner />}
-          {data?.map((e) => {
+          {data?.map((e, index) => {
             if (e.functionId == "deposit_public") {
               return (
-                <Card className="w-full  rounded-sm px-2 py-2 ">
+                <Card className="w-full  rounded-sm px-2 py-2 " key={index}>
                   <CardTitle className="text-sm flex justify-between">
                     Status:{" "}
                     <Badge
