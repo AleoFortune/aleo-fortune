@@ -18,7 +18,7 @@ export const depositAleoCredit = async (
   const createEventResponse = await requestCreateEvent({
     type: EventType.Execute,
     programId: "credits.aleo",
-    functionId: "tarnsfer_public",
+    functionId: "transfer_public",
     fee: 3.5,
     inputs: Object.values(fields),
   });
