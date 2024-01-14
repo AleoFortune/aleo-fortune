@@ -11,21 +11,20 @@ import {
 import { Input } from "./ui/input";
 import { useAccount } from "@puzzlehq/sdk";
 import { useMutation } from "@tanstack/react-query";
-import { depositFortuneCredit } from "@/lib/queries/depositFortuneCredits";
+import { depositAleoCredit } from "@/lib/queries/depositAleoCredits";
 import Spinner from "./ui/spinner";
 import { toast } from "sonner";
 
 type Props = {};
 
-const AddCreditDialog = (props: Props) => {
-  const { account } = useAccount();
+const AddAleoCreditDialog = (props: Props) => {
   const creditInputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
 
   const depositMutation = useMutation({
-    mutationKey: ["depositFortuneCredit"],
+    mutationKey: ["depositAleoCredit"],
     mutationFn: () =>
-      depositFortuneCredit(account!, parseInt(creditInputRef.current!.value)),
+    depositAleoCredit(parseInt(creditInputRef.current!.value)),
     onSuccess(data, variables, context) {
       setOpen(false);
       toast.success("Deposit Successful");
@@ -60,7 +59,7 @@ const AddCreditDialog = (props: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger>
-        <Button>Add More Credits</Button>
+        <Button>Send Aleo Credits to Play</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -92,4 +91,4 @@ const AddCreditDialog = (props: Props) => {
   );
 };
 
-export default AddCreditDialog;
+export default AddAleoCreditDialog;

@@ -16,7 +16,7 @@ export const depositFortuneCredit = async (
 
   const createEventResponse = await requestCreateEvent({
     type: EventType.Execute,
-    programId: "cassino_game_test_fp.aleo",
+    programId: "cassino_game_final.aleo",
     functionId: "deposit_public",
     fee: 1,
     inputs: Object.values(fields),

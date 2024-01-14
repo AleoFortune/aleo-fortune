@@ -8,6 +8,9 @@ import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import AddCreditDialog from "./addCreditDialog";
+import AddAleoCreditDialog from "./addAleoCreditDialog";
+import WithdrawAleoCreditDialog from "./withdrawAleoCreditDialog";
+import WithdrawCreditDialog from "./withdrawCreditDialog";
 type Props = { className?: string };
 
 const RightBar = (props: Props) => {
@@ -48,6 +51,10 @@ const RightBar = (props: Props) => {
             }
           </div>
           <AddCreditDialog />
+          <WithdrawCreditDialog/>
+          <AddAleoCreditDialog />
+          <WithdrawAleoCreditDialog/>
+
 
           <p>game rules</p>
           <p>get aleo</p>
