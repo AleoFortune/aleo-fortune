@@ -61,9 +61,9 @@ const SelectionSection = (props: Props) => {
       <div className="mt-[46px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white rounded-tr-sm rounded-br-sm">
         <button
           className={`flex-1 text-center flex items-center rounded-tr-sm justify-center px-2 border-b border-white cursor-pointer ${
-            selection === "1st" ? "bg-green-500" : ""
+            selection === 1 ? "bg-green-500" : ""
           }`}
-          onClick={() => setSelection("1st")}
+          onClick={() => setSelection(1)}
           onKeyDown={() => {}}
           tabIndex={0}
         >
@@ -71,18 +71,18 @@ const SelectionSection = (props: Props) => {
         </button>
         <button
           className={`flex-1 text-center flex items-center justify-center px-2 border-b border-white cursor-pointer ${
-            selection === "2nd" ? "bg-green-500" : ""
+            selection === 2 ? "bg-green-500" : ""
           }`}
-          onClick={() => setSelection("2nd")}
+          onClick={() => setSelection(2)}
           onKeyDown={() => {}}
         >
           2nd 12
         </button>
         <button
           className={`flex-1 text-center flex items-center justify-center px-2 cursor-pointer ${
-            selection === "3rd" ? "bg-green-500" : ""
+            selection === 3 ? "bg-green-500" : ""
           }`}
-          onClick={() => setSelection("3rd")}
+          onClick={() => setSelection(3)}
           onKeyDown={() => {}}
         >
           3rd 12
