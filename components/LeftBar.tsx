@@ -104,7 +104,7 @@ const LeftBar = (props: Props) => {
                           <p className="text-sm">
                             <span className="font-bold">Bet Amount: </span>{" "}
                             <span className="text-red-300">
-                              {parseInt(e.inputs[1]!)}
+                              {parseInt(e.inputs[0]!)}
                             </span>{" "}
                             Fortune Credits
                           </p>

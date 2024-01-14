@@ -113,12 +113,16 @@ const MainContent = (props: Props) => {
           Place Bet
         </Button>
       </Card>
-      <Card className="text-center mb-12">
-        <p className="font-bold text-base">Current Game</p>
-        <span className="text-sm">{gameEventID}</span>
-      </Card>
+
+      {gameEventID && (
+        <Card className="text-center mb-12">
+          <p className="font-bold text-base">Current Game</p>
+          <span className="text-sm">{gameEventID}</span>
+        </Card>
+      )}
+
       <div className="flex justify-center">
-        <SelectionSection />
+       { !gameEventID &&  <SelectionSection />}
         <RouletteWheel startSpin={startSpin} prizeNumber={prizeNumber} />
       </div>
     </Card>
