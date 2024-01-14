@@ -75,7 +75,8 @@ const MainContent = (props: Props) => {
     mutationKey: ["getRandomGeneratedNumbers"],
     mutationFn: () => getRandomGeneratedNumber(account!),
     onSuccess(data, variables, context) {
-      setPrizeNumber(data);
+      // setPrizeNumber(data);
+      setStartSpin(true);
     },
   });
 
@@ -140,7 +141,7 @@ const MainContent = (props: Props) => {
 
       <div className="flex justify-center">
         {!gameEventID && <SelectionSection />}
-        <RouletteWheel  />
+        <RouletteWheel />
       </div>
     </Card>
   );

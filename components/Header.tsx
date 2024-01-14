@@ -10,7 +10,6 @@ import {
 } from "@puzzlehq/sdk";
 import Image from "next/image";
 import aleoFortuneLogo from "@/assets/fortune-logo.png";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 type Props = {
   className?: string;
