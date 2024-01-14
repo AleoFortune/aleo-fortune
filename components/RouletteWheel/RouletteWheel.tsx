@@ -1,14 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { data } from "./data";
 import { Wheel } from "react-custom-roulette";
 import { Button } from "../ui/button";
+import { GamePlayContext } from "@/context/gamePlayContext";
 type Props = {
   startSpin: boolean;
   prizeNumber: number;
 };
 
-const RouletteWheel = ({ startSpin, prizeNumber }: Props) => {
+const RouletteWheel = () => {
+  const { startSpin, prizeNumber } = useContext(GamePlayContext);
+
   return (
     <div>
       <Wheel
