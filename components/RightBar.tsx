@@ -12,7 +12,6 @@ type Props = { className?: string };
 
 const RightBar = (props: Props) => {
   const { account } = useAccount();
-
   const { data: fortuneCredit, isLoading } = useQuery({
     refetchInterval: 10000,
     queryKey: ["userCredit"],

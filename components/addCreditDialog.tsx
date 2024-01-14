@@ -37,7 +37,6 @@ const AddCreditDialog = (props: Props) => {
   });
 
   const handleDeposit = () => {
-    console.log("handle deposit triggred");
     if (creditInputRef.current?.value === "" || 0) return;
 
     if (parseInt(creditInputRef.current!.value) > 50) {
