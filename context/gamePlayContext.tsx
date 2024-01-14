@@ -14,6 +14,9 @@ const GamePlayProvider = (props: Props) => {
   const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
   const [currentGameStatus, setCurrentGameStatus] = useState<any>(null);
 
+  const [currentGameTransactionID, setCurrentGameTransactionID] =
+    useState<any>(null);
+
   const resetGamePlayContext = () => {
     setSelection(null);
     setUserBet(null);
@@ -47,6 +50,8 @@ const GamePlayProvider = (props: Props) => {
         setCurrentGameStatus,
         setIsGamePlaying,
         resetGamePlayContext,
+        currentGameTransactionID,
+        setCurrentGameTransactionID,
       }}
     >
       {props.children}

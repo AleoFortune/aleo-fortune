@@ -30,7 +30,5 @@ export const placeBet = async (bet_amount: string, bet: number) => {
     inputs: Object.values(playInput),
   });
 
-  console.log(createEventResponse);
-
   return createEventResponse;
 };

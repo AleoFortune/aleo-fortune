@@ -19,6 +19,7 @@ import dynamic from "next/dynamic";
 import React, { useContext, useEffect, useState } from "react";
 import { getAllPuzzleWalletEvents } from "@/lib/queries/getAllPuzzleWalletEvents";
 import { getRandomGeneratedNumber } from "@/lib/queries/getRandomGeneratedNumber";
+import { getBlockHashFromTxID } from "@/lib/queries/getBlockHashfromTxID";
 
 type Props = { className?: string };
 
@@ -36,6 +37,8 @@ const MainContent = (props: Props) => {
     setGameEventID,
     isGamePlaying,
     setIsGamePlaying,
+    currentGameTransactionID,
+    setCurrentGameTransactionID,
   } = useContext(GamePlayContext);
 
   const [isBetButtonDisabled, setBetButtonDisabled] = useState<boolean>(false);
@@ -54,6 +57,12 @@ const MainContent = (props: Props) => {
       setBetButtonDisabled(false);
       alert("There was an error while sending your bet");
     },
+  });
+
+  const { data: transactionData } = useQuery({
+    enabled: currentGameTransactionID != null,
+    queryKey: ["currentGameTransactionID", currentGameTransactionID],
+    queryFn: () => getBlockHashFromTxID(currentGameTransactionID!),
   });
 
   const { data, isLoading } = useQuery({
@@ -77,15 +86,23 @@ const MainContent = (props: Props) => {
 
     data?.map((e) => {
       if (e._id == gameEventID) {
-        if (e.status == "Settled") {
-          getRandomGeneratedNumbers.mutate();
-        }
+        setCurrentGameTransactionID(e.transactionId);
       }
     });
   }, [gameEventID, data]);
 
+  const handleTransactionID = () => {
+    console.log(currentGameTransactionID);
+  };
+  if (transactionData) {
+    getRandomGeneratedNumbers.mutate();
+  }
+
   return (
     <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-6")}>
+      <Button onClick={handleTransactionID}>
+        print transaction id of current game
+      </Button>
       <Card className="px-4 py-6 mb-12 flex items-center gap-4 justify-between">
         <p className=" font-bold text-xl">
           Selected Bet: <span className="text-red-400">{selection}</span>
@@ -122,7 +139,7 @@ const MainContent = (props: Props) => {
       )}
 
       <div className="flex justify-center">
-       { !gameEventID &&  <SelectionSection />}
+        {!gameEventID && <SelectionSection />}
         <RouletteWheel startSpin={startSpin} prizeNumber={prizeNumber} />
       </div>
     </Card>
