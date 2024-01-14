@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
+import GamePlayProvider from "@/context/gamePlayContext";
 
 export default function RootLayout({
   children,
@@ -31,10 +32,12 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Header />
-              {children}
-              {/* <Footer /> */}
-              <Toaster />
+              <GamePlayProvider>
+                <Header />
+                {children}
+                {/* <Footer /> */}
+                <Toaster />
+              </GamePlayProvider>
             </ThemeProvider>
             <ReactQueryDevtools initialIsOpen={false} />
           </body>
