@@ -52,10 +52,16 @@ const RightBar = (props: Props) => {
             <AddCreditDialog />
             <WithdrawCreditDialog />
           </div>
-          <p>Firstly, to get Fortune credit send some Aleo credit</p>
           <AddAleoCreditDialog />
 
-          <p>game rules</p>
+          <p>Game Rules:</p>
+          <p className="text-sm">1. Deposit some Aleo token to get Fortune token</p>
+          <p className="text-sm">2. Select a bet (odd even bet: 2x, black and red bet: 2x, Dozen bet (1-12. 13-24, 25-36) : 3x, Straightup bet: 36x, Low-High bet (1-18, 19-36): 2x )</p>
+          <p className="text-sm">3. Select a bet amount</p>
+          <p className="text-sm">4. Enjoy to play</p>
+          <p className="text-sm">5. To cashout, withdraw your Fortune token first</p>
+          <p className="text-sm">6. Withdraw your Aleo token</p>
+
         </div>
       )}
     </Card>
