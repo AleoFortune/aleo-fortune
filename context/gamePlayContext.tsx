@@ -26,12 +26,6 @@ const GamePlayProvider = (props: Props) => {
     setIsGamePlaying(false);
   };
 
-  useEffect(() => {
-    if (prizeNumber) {
-      setStartSpin(true);
-    }
-  }, [prizeNumber]);
-
   return (
     <GamePlayContext.Provider
       value={{
