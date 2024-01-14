@@ -48,11 +48,12 @@ const RightBar = (props: Props) => {
               </Badge>
             }
           </div>
-          <AddCreditDialog />
-          <WithdrawCreditDialog/>
+          <div className="flex justify-between gap-2">
+            <AddCreditDialog />
+            <WithdrawCreditDialog />
+          </div>
           <p>Firstly, to get Fortune credit send some Aleo credit</p>
           <AddAleoCreditDialog />
-
 
           <p>game rules</p>
         </div>

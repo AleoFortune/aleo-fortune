@@ -60,7 +60,7 @@ const WithdrawCreditDialog = (props: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger>
-        <Button>Withdraw Credits</Button>
+        <Button size={"sm"}>Withdraw Credits</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

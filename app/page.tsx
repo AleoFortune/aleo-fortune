@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex gap-6 h-full" suppressHydrationWarning>
       <LeftBar className="w-60 overflow-auto max-h-screen" />
       <MainContent className="flex-grow" />
-      <RightBar className="w-72 " />
+      <RightBar className="w-80 " />
     </main>
   );
 }

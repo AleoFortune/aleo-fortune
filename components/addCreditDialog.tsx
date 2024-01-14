@@ -59,7 +59,7 @@ const AddCreditDialog = (props: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger>
-        <Button>Add More Credits</Button>
+        <Button size={"sm"}>Add More Credits</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
