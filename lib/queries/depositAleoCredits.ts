@@ -1,10 +1,9 @@
-import { EventType, PuzzleAccount, requestCreateEvent } from "@puzzlehq/sdk";
+import { EventType, requestCreateEvent } from "@puzzlehq/sdk";
 
 export const depositAleoCredit = async (
-  account: PuzzleAccount,
   value: number
 ) => {
-  if (!account || !value) {
+  if (!value) {
     alert("no account");
     return;
   }
@@ -13,7 +12,7 @@ export const depositAleoCredit = async (
 
   const fields = {
     receiver: houseAddress,
-    amount: value.toString() + "u64",
+    amount: value.toString() + "000000u64",
   };
 
   const createEventResponse = await requestCreateEvent({

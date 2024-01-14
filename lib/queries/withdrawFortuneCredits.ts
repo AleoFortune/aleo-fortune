@@ -1,6 +1,6 @@
 import { EventType, PuzzleAccount, requestCreateEvent } from "@puzzlehq/sdk";
 
-export const depositAleoCredit = async (
+export const withdrawFortuneCredit = async (
   account: PuzzleAccount,
   value: number
 ) => {
