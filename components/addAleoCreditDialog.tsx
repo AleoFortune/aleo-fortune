@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Input } from "./ui/input";
-import { useAccount } from "@puzzlehq/sdk";
 import { useMutation } from "@tanstack/react-query";
 import { depositAleoCredit } from "@/lib/queries/depositAleoCredits";
 import Spinner from "./ui/spinner";

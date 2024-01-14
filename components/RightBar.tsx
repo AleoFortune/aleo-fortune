@@ -9,7 +9,6 @@ import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import AddCreditDialog from "./addCreditDialog";
 import AddAleoCreditDialog from "./addAleoCreditDialog";
-import WithdrawAleoCreditDialog from "./withdrawAleoCreditDialog";
 import WithdrawCreditDialog from "./withdrawCreditDialog";
 type Props = { className?: string };
 
@@ -52,13 +51,11 @@ const RightBar = (props: Props) => {
           </div>
           <AddCreditDialog />
           <WithdrawCreditDialog/>
+          <p>Firstly, to get Fortune credit send some Aleo credit</p>
           <AddAleoCreditDialog />
-          <WithdrawAleoCreditDialog/>
 
 
           <p>game rules</p>
-          <p>get aleo</p>
-          <p>withdraw</p>
         </div>
       )}
     </Card>
