@@ -11,6 +11,23 @@ const GamePlayProvider = (props: Props) => {
   const [startSpin, setStartSpin] = useState<boolean>(false);
   const [prizeNumber, setPrizeNumber] = useState(null);
   const [gameEventID, setGameEventID] = useState<any>(null);
+  const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
+  const [currentGameStatus, setCurrentGameStatus] = useState<any>(null);
+
+  const resetGamePlayContext = () => {
+    setSelection(null);
+    setUserBet(null);
+    setStartSpin(false);
+    setPrizeNumber(null);
+    setGameEventID(null);
+    setIsGamePlaying(false);
+  };
+
+  useEffect(() => {
+    if (prizeNumber) {
+      setStartSpin(true);
+    }
+  }, [prizeNumber]);
 
   return (
     <GamePlayContext.Provider
@@ -25,6 +42,11 @@ const GamePlayProvider = (props: Props) => {
         setPrizeNumber,
         gameEventID,
         setGameEventID,
+        isGamePlaying,
+        currentGameStatus,
+        setCurrentGameStatus,
+        setIsGamePlaying,
+        resetGamePlayContext,
       }}
     >
       {props.children}

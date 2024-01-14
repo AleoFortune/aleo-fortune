@@ -39,14 +39,14 @@ const LeftBar = (props: Props) => {
                 orientation="horizontal"
                 className="mb-2 text-white bg-red-500"
               />
-              <p className="text-muted-foreground text-sm font-semibold">
+              <p className="text-muted-foreground text-sm font-semibold my-4">
                 You may also check executions in your Puzzle Wallet extension
               </p>
               {isLoading && <Spinner />}
               {data?.map((e, index) => {
                 if (e.functionId == "deposit_public") {
                   return (
-                    <Card className="w-full  rounded-sm px-2 py-2 " key={index}>
+                    <Card className="w-full rounded-sm px-2 py-2 " key={index}>
                       <CardTitle className="text-sm flex justify-between">
                         Status:{" "}
                         <Badge
@@ -80,7 +80,7 @@ const LeftBar = (props: Props) => {
                 orientation="horizontal"
                 className="mb-2 text-white bg-red-500"
               />
-              <p className="text-muted-foreground text-sm font-semibold">
+              <p className="text-muted-foreground text-sm font-semibold my-4">
                 You may also check executions in your Puzzle Wallet extension
               </p>
               {isLoading && <Spinner />}
@@ -115,6 +115,12 @@ const LeftBar = (props: Props) => {
                             <span className="text-red-300">
                               {parseInt(e.inputs[1]!)}
                             </span>{" "}
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-sm">
+                            <span className="font-bold">Game ID: </span>{" "}
+                            <span className="text-red-300">{e._id!}</span>{" "}
                           </p>
                         </div>
                       </CardContent>
