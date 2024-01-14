@@ -16,10 +16,10 @@ export const depositAleoCredit = async (
   };
 
   const createEventResponse = await requestCreateEvent({
-    type: EventType.Execute,
+    type: EventType.Execute,  
     programId: "credits.aleo",
-    functionId: "tarnsfer_public",
-    fee: 3.5,
+    functionId: "transfer_public",
+    fee: 1,
     inputs: Object.values(fields),
   });
   if (createEventResponse.error) {
