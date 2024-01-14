@@ -140,7 +140,7 @@ const MainContent = (props: Props) => {
 
       <div className="flex justify-center">
         {!gameEventID && <SelectionSection />}
-        <RouletteWheel startSpin={startSpin} prizeNumber={prizeNumber} />
+        <RouletteWheel  />
       </div>
     </Card>
   );
