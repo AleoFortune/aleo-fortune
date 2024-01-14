@@ -33,23 +33,17 @@ finalize deposit_public:
 function withdraw_public:
     input r0 as address.public;
     input r1 as u64.public;
-    async withdraw_public aleo1696yxs062yrm0nmvflwcp7zjy0l8l4w8gpr3wn0ql3nttu54ayqsuxqus5 self.caller r1 into r2;
+    async withdraw_public self.caller r1 into r2;
     output r2 as cassino_game_final.aleo/withdraw_public.future;
 
 finalize withdraw_public:
     input r0 as address.public;
-    input r1 as address.public;
-    input r2 as u64.public;
-    get.or_use account[r0] 0u64 into r3;
-    gte r3 r2 into r4;
-    assert.eq r4 true;
-    add r3 r2 into r5;
-    set r5 into account[r0];
-    get.or_use account[r1] 0u64 into r6;
-    gte r6 r2 into r7;
-    assert.eq r7 true;
-    sub r6 r2 into r8;
-    set r8 into account[r1];
+    input r1 as u64.public;
+    get.or_use account[r0] 0u64 into r2;
+    gte r2 r1 into r3;
+    assert.eq r3 true;
+    sub r2 r1 into r4;
+    set r4 into account[r0];
 
 
 function make_odd_even_bet_public:

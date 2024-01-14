@@ -76,7 +76,7 @@ const AddCreditDialog = (props: Props) => {
                   max={50}
                 />
                 <p className="text-xs font-bold mt-2">
-                  Max: 50 credits, current fee: 3.5 ALEO TOKEN
+                  Max: 50 credits, current fee: 1 ALEO TOKEN
                 </p>
               </div>
               {depositMutation.isLoading ? (
