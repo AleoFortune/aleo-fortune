@@ -1,6 +1,10 @@
 "use client";
 
-import RouletteWheel from "@/components/RouletteWheel/RouletteWheel";
+const RouletteWheel = dynamic(
+  () => import("@/components/RouletteWheel/RouletteWheel"),
+  { ssr: false }
+);
+
 import SelectionSection from "@/components/SelectionSection/selectionSection";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
