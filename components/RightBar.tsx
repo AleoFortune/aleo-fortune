@@ -49,12 +49,22 @@ const RightBar = (props: Props) => {
               </Badge>
             }
           </div>
-          <div className="flex justify-between gap-2">
+          <div className="flex flex-col gap-2">
+    <div>
+        <p>Deposit and Withdraw Fortune Token (Wrapped Aleo Token):</p>
+        <div>
             <AddCreditDialog />
             <WithdrawCreditDialog />
-          </div>
-          <AddAleoCreditDialog />
-          <WithdrawAleoCreditDialog />
+        </div>
+    </div>
+    <div>
+        <p>Deposit and Withdraw Aleo Token:</p>
+        <div>
+            <AddAleoCreditDialog />
+            <WithdrawAleoCreditDialog />
+        </div>
+    </div>
+</div>
 
           <p>Game Rules:</p>
           <p className="text-sm">1. Deposit some Aleo token to get Fortune token</p>
