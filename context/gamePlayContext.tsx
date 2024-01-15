@@ -20,7 +20,7 @@ const GamePlayProvider = (props: Props) => {
 
   const resetGamePlayContext = () => {
     setSelection(null);
-    setUserBet(null);
+    setUserBet("");
     setStartSpin(false);
     setPrizeNumber(null);
     setGameEventID(null);

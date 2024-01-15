@@ -21,6 +21,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAllPuzzleWalletEvents } from "@/lib/queries/getAllPuzzleWalletEvents";
 import { getRandomGeneratedNumber } from "@/lib/queries/getRandomGeneratedNumber";
 import { getBlockHashFromTxID } from "@/lib/queries/getBlockHashfromTxID";
+import Spinner from "@/components/ui/spinner";
 
 type Props = { className?: string };
 
@@ -113,7 +114,7 @@ const MainContent = (props: Props) => {
         </Label>
         <Input
           id="bet"
-          value={userBet}
+          value={userBet || ""}
           className="w-32"
           type="number"
           onChange={(e) => setUserBet(e.target.value)}
@@ -132,9 +133,12 @@ const MainContent = (props: Props) => {
       </Card>
 
       {gameEventID && (
-        <Card className="text-center mb-12">
-          <p className="font-bold text-base">Current Game</p>
-          <span className="text-sm">{gameEventID}</span>
+        <Card className="text-center mb-12 flex justify-center items-center gap-4">
+          <div>
+            <p className="font-bold text-base">Current Game</p>
+            <span className="text-sm">{gameEventID}</span>
+          </div>
+          {!startSpin && <Spinner />}
         </Card>
       )}
 
