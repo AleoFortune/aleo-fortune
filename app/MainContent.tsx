@@ -4,6 +4,7 @@ const RouletteWheel = dynamic(
   () => import("@/components/RouletteWheel/RouletteWheel"),
   { ssr: false }
 );
+
 import SelectionSection from "@/components/SelectionSection/selectionSection";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -20,6 +21,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAllPuzzleWalletEvents } from "@/lib/queries/getAllPuzzleWalletEvents";
 import { getRandomGeneratedNumber } from "@/lib/queries/getRandomGeneratedNumber";
 import { getBlockHashFromTxID } from "@/lib/queries/getBlockHashfromTxID";
+import Spinner from "@/components/ui/spinner";
 
 type Props = { className?: string };
 
@@ -59,15 +61,22 @@ const MainContent = (props: Props) => {
     },
   });
 
-  const { data: transactionData } = useQuery({
+  const { data: transactionData, isFetched } = useQuery({
     enabled: currentGameTransactionID != null,
+    refetchInterval: 3500,
     queryKey: ["currentGameTransactionID", currentGameTransactionID],
     queryFn: () => getBlockHashFromTxID(currentGameTransactionID!),
   });
 
+  useEffect(() => {
+    if (transactionData !== null && transactionData !== undefined) {
+      getRandomGeneratedNumbers.mutate();
+    }
+  }, [transactionData]);
+
   const { data, isLoading } = useQuery({
-    queryKey: ["currentGameEvent"],
-    refetchInterval: 2000,
+    queryKey: ["puzzleWalletEvents"],
+    refetchInterval: 4000,
     queryFn: () => getAllPuzzleWalletEvents(),
   });
 
@@ -75,8 +84,8 @@ const MainContent = (props: Props) => {
     mutationKey: ["getRandomGeneratedNumbers"],
     mutationFn: () => getRandomGeneratedNumber(account!),
     onSuccess(data, variables, context) {
-      // setPrizeNumber(data);
-      setStartSpin(true);
+      console.log("PRIZE NUMBER :", data);
+      setPrizeNumber(data);
     },
   });
 
@@ -92,18 +101,8 @@ const MainContent = (props: Props) => {
     });
   }, [gameEventID, data]);
 
-  const handleTransactionID = () => {
-    console.log(currentGameTransactionID);
-  };
-  if (transactionData) {
-    getRandomGeneratedNumbers.mutate();
-  }
-
   return (
     <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-6")}>
-      <Button onClick={handleTransactionID}>
-        print transaction id of current game
-      </Button>
       <Card className="px-4 py-6 mb-12 flex items-center gap-4 justify-between">
         <p className=" font-bold text-xl">
           Selected Bet: <span className="text-red-400">{selection}</span>
@@ -115,6 +114,7 @@ const MainContent = (props: Props) => {
         </Label>
         <Input
           id="bet"
+          value={userBet || ""}
           className="w-32"
           type="number"
           onChange={(e) => setUserBet(e.target.value)}
@@ -133,9 +133,15 @@ const MainContent = (props: Props) => {
       </Card>
 
       {gameEventID && (
-        <Card className="text-center mb-12">
-          <p className="font-bold text-base">Current Game</p>
-          <span className="text-sm">{gameEventID}</span>
+        <Card className="text-center mb-12 flex justify-between items-center gap-4">
+          <div className="flex-1">
+            <p className="font-bold text-base">Current Game</p>
+            <span className="text-sm">{gameEventID}</span>
+          </div>
+          {!startSpin && <Spinner />}
+          <p className="font-bold text-base justify-end flex-1">
+            Spin will start in a minute, do not refresh the page
+          </p>
         </Card>
       )}
 
