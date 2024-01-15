@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 type Props = {
@@ -25,6 +26,12 @@ const GamePlayProvider = (props: Props) => {
     setGameEventID(null);
     setIsGamePlaying(false);
   };
+
+  useEffect(() => {
+    if (prizeNumber !== null) {
+      setStartSpin(true);
+    }
+  }, [prizeNumber]);
 
   return (
     <GamePlayContext.Provider

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import {
@@ -10,6 +10,7 @@ import {
 } from "@puzzlehq/sdk";
 import Image from "next/image";
 import aleoFortuneLogo from "@/assets/fortune-logo.png";
+import { GamePlayContext } from "@/context/gamePlayContext";
 
 type Props = {
   className?: string;
@@ -18,7 +19,21 @@ type Props = {
 const Header = (props: Props) => {
   const { account } = useAccount();
   const { disconnect, loading } = useDisconnect();
-
+  const {
+    selection,
+    startSpin,
+    setStartSpin,
+    prizeNumber,
+    setPrizeNumber,
+    userBet,
+    setUserBet,
+    gameEventID,
+    setGameEventID,
+    isGamePlaying,
+    setIsGamePlaying,
+    currentGameTransactionID,
+    setCurrentGameTransactionID,
+  } = useContext(GamePlayContext);
   return (
     <div
       suppressHydrationWarning

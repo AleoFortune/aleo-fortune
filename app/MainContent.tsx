@@ -1,9 +1,6 @@
 "use client";
 
-const RouletteWheel = dynamic(
-  () => import("@/components/RouletteWheel/RouletteWheel"),
-  { ssr: false }
-);
+import RouletteWheel from "@/components/RouletteWheel/RouletteWheel";
 import SelectionSection from "@/components/SelectionSection/selectionSection";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -59,11 +56,17 @@ const MainContent = (props: Props) => {
     },
   });
 
-  const { data: transactionData } = useQuery({
+  const { data: transactionData, isFetched } = useQuery({
     enabled: currentGameTransactionID != null,
     queryKey: ["currentGameTransactionID", currentGameTransactionID],
     queryFn: () => getBlockHashFromTxID(currentGameTransactionID!),
   });
+
+  useEffect(() => {
+    if (transactionData !== null && transactionData !== undefined) {
+      getRandomGeneratedNumbers.mutate();
+    }
+  }, [transactionData]);
 
   const { data, isLoading } = useQuery({
     queryKey: ["currentGameEvent"],
@@ -75,8 +78,8 @@ const MainContent = (props: Props) => {
     mutationKey: ["getRandomGeneratedNumbers"],
     mutationFn: () => getRandomGeneratedNumber(account!),
     onSuccess(data, variables, context) {
-      // setPrizeNumber(data);
-      setStartSpin(true);
+      console.log("PRIZE NUMBER :", data);
+      setPrizeNumber(data);
     },
   });
 
@@ -95,9 +98,6 @@ const MainContent = (props: Props) => {
   const handleTransactionID = () => {
     console.log(currentGameTransactionID);
   };
-  if (transactionData) {
-    getRandomGeneratedNumbers.mutate();
-  }
 
   return (
     <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-6")}>
