@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import AddCreditDialog from "./addCreditDialog";
 import AddAleoCreditDialog from "./addAleoCreditDialog";
 import WithdrawCreditDialog from "./withdrawCreditDialog";
+import WithdrawAleoCreditDialog from "./withdrawAleoCreditDialog";
 type Props = { className?: string };
 
 const RightBar = (props: Props) => {
@@ -53,6 +54,7 @@ const RightBar = (props: Props) => {
             <WithdrawCreditDialog />
           </div>
           <AddAleoCreditDialog />
+          <WithdrawAleoCreditDialog />
 
           <p>Game Rules:</p>
           <p className="text-sm">1. Deposit some Aleo token to get Fortune token</p>
