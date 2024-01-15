@@ -5,10 +5,12 @@ import { Wheel } from "react-custom-roulette";
 import { Button } from "../ui/button";
 import { GamePlayContext } from "@/context/gamePlayContext";
 import { getOrder } from "@/lib/utils";
+import FinishGameDialog from "../finishGameDialog";
 
 const RouletteWheel = () => {
   const { startSpin, prizeNumber } = useContext(GamePlayContext);
-
+  const [openGameFinishDialog, setOpenGameFinishDialog] =
+    useState<boolean>(false);
   const [prizeHolder, setPrizeHolder] = useState<any>(null);
 
   useEffect(() => {
@@ -16,14 +18,6 @@ const RouletteWheel = () => {
       setPrizeHolder(getOrder(prizeNumber)!);
     }
   }, [prizeNumber]);
-
-  // useEffect(() => {
-  //   first
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [prizeHolder])
 
   return (
     <div>
@@ -33,8 +27,15 @@ const RouletteWheel = () => {
         innerRadius={40}
         innerBorderWidth={5}
         data={data}
+        onStopSpinning={() => {
+          setOpenGameFinishDialog(true);
+        }}
         // backgroundColors={["#fafafa", "#fafafa"]}
         textColors={["#ffffff"]}
+      />
+      <FinishGameDialog
+        open={openGameFinishDialog}
+        setOpen={setOpenGameFinishDialog}
       />
     </div>
   );

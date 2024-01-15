@@ -25,6 +25,8 @@ const GamePlayProvider = (props: Props) => {
     setPrizeNumber(null);
     setGameEventID(null);
     setIsGamePlaying(false);
+    setCurrentGameStatus(null);
+    setCurrentGameTransactionID(null);
   };
 
   useEffect(() => {

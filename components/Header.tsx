@@ -65,6 +65,11 @@ const Header = (props: Props) => {
             {shortenAddress(account.address)}
           </Button>
         )}
+        {!account && (
+          <Button size={"lg"} onClick={disconnect} disabled={loading}>
+            LOG OUT
+          </Button>
+        )}
       </div>
     </div>
   );

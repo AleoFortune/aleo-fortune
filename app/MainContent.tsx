@@ -58,6 +58,7 @@ const MainContent = (props: Props) => {
 
   const { data: transactionData, isFetched } = useQuery({
     enabled: currentGameTransactionID != null,
+    refetchInterval: 3500,
     queryKey: ["currentGameTransactionID", currentGameTransactionID],
     queryFn: () => getBlockHashFromTxID(currentGameTransactionID!),
   });
@@ -69,8 +70,8 @@ const MainContent = (props: Props) => {
   }, [transactionData]);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["currentGameEvent"],
-    refetchInterval: 2000,
+    queryKey: ["puzzleWalletEvents"],
+    refetchInterval: 4000,
     queryFn: () => getAllPuzzleWalletEvents(),
   });
 
@@ -95,15 +96,8 @@ const MainContent = (props: Props) => {
     });
   }, [gameEventID, data]);
 
-  const handleTransactionID = () => {
-    console.log(currentGameTransactionID);
-  };
-
   return (
     <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-6")}>
-      <Button onClick={handleTransactionID}>
-        print transaction id of current game
-      </Button>
       <Card className="px-4 py-6 mb-12 flex items-center gap-4 justify-between">
         <p className=" font-bold text-xl">
           Selected Bet: <span className="text-red-400">{selection}</span>
@@ -115,6 +109,7 @@ const MainContent = (props: Props) => {
         </Label>
         <Input
           id="bet"
+          value={userBet}
           className="w-32"
           type="number"
           onChange={(e) => setUserBet(e.target.value)}
