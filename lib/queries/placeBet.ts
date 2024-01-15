@@ -55,7 +55,6 @@ export const placeBet = async (bet_amount: string, bet: any) => {
   const createEventResponse = await requestCreateEvent({
     type: EventType.Execute,
     programId: "cassino_game_final.aleo",
-    // functionId: "make_straightup_bet_public",
     functionId: functionId,
     fee: 1.5,
     inputs: Object.values(playInput),
