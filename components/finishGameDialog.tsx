@@ -8,7 +8,7 @@ import {
 } from "./ui/dialog";
 import { GamePlayContext } from "@/context/gamePlayContext";
 import { Button } from "./ui/button";
-
+import { data } from "./RouletteWheel/data";
 type Props = {
   open: boolean;
   setOpen: any;
@@ -37,6 +37,22 @@ const FinishGameDialog = (props: Props) => {
         return prizeNumber % 2 === 0 ? "YOU WIN !" : "YOU LOST";
       case "Odd":
         return prizeNumber % 2 !== 0 ? "YOU WIN !" : "YOU LOST";
+
+      case "Red":
+        const redOptions = data.filter(
+          (item) => item.style.backgroundColor === "red"
+        );
+        return redOptions.some((item) => item.option == prizeNumber)
+          ? "YOU WIN !"
+          : "YOU LOST";
+      case "Black":
+        const blackOptions = data.filter(
+          (item) => item.style.backgroundColor === "black"
+        );
+        return blackOptions.some((item) => item.option == prizeNumber)
+          ? "YOU WIN !"
+          : "YOU LOST";
+
       default:
         return "YOU LOST";
     }

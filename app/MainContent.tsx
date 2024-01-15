@@ -133,12 +133,15 @@ const MainContent = (props: Props) => {
       </Card>
 
       {gameEventID && (
-        <Card className="text-center mb-12 flex justify-center items-center gap-4">
-          <div>
+        <Card className="text-center mb-12 flex justify-between items-center gap-4">
+          <div className="flex-1">
             <p className="font-bold text-base">Current Game</p>
             <span className="text-sm">{gameEventID}</span>
           </div>
           {!startSpin && <Spinner />}
+          <p className="font-bold text-base justify-end flex-1">
+            Spin will start in a minute, do not refresh the page
+          </p>
         </Card>
       )}
 
