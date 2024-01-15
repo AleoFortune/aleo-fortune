@@ -31,6 +31,7 @@ const RouletteWheel = () => {
           setOpenGameFinishDialog(true);
         }}
         // backgroundColors={["#fafafa", "#fafafa"]}
+        textDistance={75}
         textColors={["#ffffff"]}
       />
       <FinishGameDialog
