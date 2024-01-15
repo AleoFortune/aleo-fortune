@@ -27,8 +27,56 @@ const SelectionSection = (props: Props) => {
 
   return (
     <div className="w-96 flex h-[600px]">
-      <div></div>
-      <div className="mt-[46px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white"></div>
+      <div className="mt-[49px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white rounded-tl-sm rounded-bl-sm">
+        <div
+          className={`flex-1 text-center flex items-center justify-center border-b-2 border-white cursor-pointer ${
+            selection === "1-18" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("1-18")}
+        >
+          1-18
+        </div>
+        <div
+          className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white ${
+            selection === "Even" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("Even")}
+        >
+          Even
+        </div>
+        <div
+          className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white ${
+            selection === "Red" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("Red")}
+        >
+          RED
+        </div>
+        <div
+          className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white  ${
+            selection === "Black" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("Black")}
+        >
+          BLACK
+        </div>
+        <div
+          className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white ${
+            selection === "Odd" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("Odd")}
+        >
+          ODD
+        </div>
+        <div
+          className={`flex-1 text-center flex items-center justify-center cursor-pointer  ${
+            selection === "19-36" ? "bg-green-500" : ""
+          }`}
+          onClick={() => setSelection("19-36")}
+        >
+          19-36
+        </div>
+      </div>
       <div className="grid grid-cols-3 w-full">
         <div className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
           <p className="font-bold text-lg">0</p>
@@ -47,7 +95,7 @@ const SelectionSection = (props: Props) => {
                 } flex justify-center border border-white ${
                   selection === item.option ? "bg-green-500" : ""
                 } py-2 ${
-                  index === 34 ? "rounded-bl-sm" : index === 36 && ""
+                  index === 34 ? "" : index === 36 && ""
                 } hover:scale-110 transition-all cursor-pointer`
               )}
               onClick={() => setSelection(item.option)}
@@ -61,9 +109,9 @@ const SelectionSection = (props: Props) => {
       <div className="mt-[46px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white rounded-tr-sm rounded-br-sm">
         <button
           className={`flex-1 text-center flex items-center rounded-tr-sm justify-center px-2 border-b border-white cursor-pointer ${
-            selection === 1 ? "bg-green-500" : ""
+            selection === "1st" ? "bg-green-500" : ""
           }`}
-          onClick={() => setSelection(1)}
+          onClick={() => setSelection("1st")}
           onKeyDown={() => {}}
           tabIndex={0}
         >
@@ -71,18 +119,18 @@ const SelectionSection = (props: Props) => {
         </button>
         <button
           className={`flex-1 text-center flex items-center justify-center px-2 border-b border-white cursor-pointer ${
-            selection === 2 ? "bg-green-500" : ""
+            selection === "2nd" ? "bg-green-500" : ""
           }`}
-          onClick={() => setSelection(2)}
+          onClick={() => setSelection("2nd")}
           onKeyDown={() => {}}
         >
           2nd 12
         </button>
         <button
           className={`flex-1 text-center flex items-center justify-center px-2 cursor-pointer ${
-            selection === 3 ? "bg-green-500" : ""
+            selection === "3rd" ? "bg-green-500" : ""
           }`}
-          onClick={() => setSelection(3)}
+          onClick={() => setSelection("3rd")}
           onKeyDown={() => {}}
         >
           3rd 12
