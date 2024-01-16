@@ -82,7 +82,10 @@ const SelectionSection = (props: Props) => {
         </button>
       </div>
       <div className="grid grid-cols-3 w-full">
-        <div className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
+        <div
+          className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer"
+          onClick={() => setSelection("0")}
+        >
           <p className="font-bold text-lg">0</p>
         </div>
 
