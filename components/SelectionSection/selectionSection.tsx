@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { data } from "../RouletteWheel/data";
 import { cn } from "@/lib/utils";
 import { GamePlayContext } from "@/context/gamePlayContext";
@@ -28,54 +28,58 @@ const SelectionSection = (props: Props) => {
   return (
     <div className="w-96 flex h-[600px]">
       <div className="mt-[49px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white rounded-tl-sm rounded-bl-sm">
-        <div
-          className={`flex-1 text-center flex items-center justify-center border-b-2 border-white cursor-pointer ${
+        <button
+          className={`flex-1 text-center flex items-center justify-center border-b-2 border-white cursor-pointer rounded-tl-sm ${
             selection === "1-18" ? "bg-green-500" : ""
           }`}
           onClick={() => setSelection("1-18")}
         >
           1-18
-        </div>
-        <div
+        </button>
+        <button
           className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white ${
             selection === "Even" ? "bg-green-500" : ""
           }`}
           onClick={() => setSelection("Even")}
         >
-          Even
-        </div>
-        <div
-          className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white ${
-            selection === "Red" ? "bg-green-500" : ""
-          }`}
+          EVEN
+        </button>
+        <button
+          className={cn(
+            `flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white bg-red-600 ${
+              selection === "Red" ? "bg-green-500" : ""
+            }`
+          )}
           onClick={() => setSelection("Red")}
         >
           RED
-        </div>
-        <div
-          className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white  ${
-            selection === "Black" ? "bg-green-500" : ""
-          }`}
+        </button>
+        <button
+          className={cn(
+            `flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white bg-black ${
+              selection === "Black" ? "bg-green-500" : ""
+            }`
+          )}
           onClick={() => setSelection("Black")}
         >
           BLACK
-        </div>
-        <div
+        </button>
+        <button
           className={`flex-1 text-center flex items-center justify-center cursor-pointer border-b-2 border-white ${
             selection === "Odd" ? "bg-green-500" : ""
           }`}
           onClick={() => setSelection("Odd")}
         >
           ODD
-        </div>
-        <div
-          className={`flex-1 text-center flex items-center justify-center cursor-pointer  ${
+        </button>
+        <button
+          className={`flex-1 text-center flex items-center justify-center cursor-pointer rounded-bl-sm ${
             selection === "19-36" ? "bg-green-500" : ""
           }`}
           onClick={() => setSelection("19-36")}
         >
           19-36
-        </div>
+        </button>
       </div>
       <div className="grid grid-cols-3 w-full">
         <div className="col-span-3 bg-green-800 border border-white text-center py-2 rounded-t-sm hover:scale-110 transition-all cursor-pointer">
@@ -127,7 +131,7 @@ const SelectionSection = (props: Props) => {
           2nd 12
         </button>
         <button
-          className={`flex-1 text-center flex items-center justify-center px-2 cursor-pointer ${
+          className={`flex-1 text-center flex items-center justify-center px-2 cursor-pointer rounded-br-sm ${
             selection === "3rd" ? "bg-green-500" : ""
           }`}
           onClick={() => setSelection("3rd")}

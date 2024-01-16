@@ -13,7 +13,6 @@ export const placeBet = async (bet_amount: string, bet: any) => {
     case "2nd":
       convertedBet = "2u32";
       functionId = "make_dozen_bet_public";
-
       break;
     case "3rd":
       convertedBet = "3u32";
