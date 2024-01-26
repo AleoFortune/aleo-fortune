@@ -139,8 +139,7 @@ const MainContent = (props: Props) => {
         <Button
           disabled={isBetButtonDisabled || isGamePlaying}
           variant={"default"}
-          size={"sm"}
-          className="xl:hidden px-2 text-sm py-1"
+          size={"xs"}
           onClick={() => {
             setBetButtonDisabled(true);
             placeBetMutation.mutate();
@@ -161,7 +160,7 @@ const MainContent = (props: Props) => {
         </Card>
       )}
 
-      <div className="flex flex-col gap-4 xl:flex-row justify-center items-center xl:items-start">
+      <div className="flex flex-col gap-4 xl:gap-0 xl:flex-row justify-center items-center xl:items-start">
         {!gameEventID && <SelectionSection />}
         <RouletteWheel />
       </div>

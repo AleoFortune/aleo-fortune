@@ -24,11 +24,16 @@ const RightBar = (props: Props) => {
   return (
     <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-4 flex flex-col gap-4 justify-start")}>
       {!account && (
-        <div className="text-center">
+        <div className="text-center flex flex-col gap-2 xl:gap-0">
           <p className="font-bold text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
             Connect your wallet to start playing!
           </p>
-          <Button onClick={connect}>Connect</Button>
+          <Button onClick={connect} className="hidden xl:flex mx-auto">
+            Connect
+          </Button>
+          <Button size={"xs"} className="xl:hidden px-2 text-sm py-1" onClick={connect}>
+            Connect
+          </Button>
         </div>
       )}
 
