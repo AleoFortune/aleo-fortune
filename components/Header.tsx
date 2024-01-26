@@ -2,14 +2,9 @@
 import React, { useContext } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-import {
-  useAccount,
-  connect,
-  shortenAddress,
-  useDisconnect,
-} from "@puzzlehq/sdk";
+import { useAccount, connect, shortenAddress, useDisconnect } from "@puzzlehq/sdk";
 import Image from "next/image";
-import aleoFortuneLogo from "@/assets/fortune-logo.png";
+import aleoFortuneLogo from "@/assets/fortune-logo.jpeg";
 import { GamePlayContext } from "@/context/gamePlayContext";
 
 type Props = {
@@ -37,19 +32,12 @@ const Header = (props: Props) => {
   return (
     <div
       suppressHydrationWarning
-      className={cn(
-        props.className,
-        "h-24 font-bold text-2xl border-b-[1px] border-gray-500 bg-muted"
-      )}
+      className={cn(props.className, "h-24 font-bold text-2xl border-b-[1px] border-gray-500 bg-muted")}
     >
       <div className="flex justify-between items-center h-full px-4">
         <div className="flex gap-2 items-center">
           <div className="rounded-full overflow-hidden">
-            <Image
-              alt="aleo fortune logo"
-              src={aleoFortuneLogo}
-              width={80}
-            ></Image>
+            <Image alt="aleo fortune logo" src={aleoFortuneLogo} width={80}></Image>
           </div>
           <h3>ALEO FORTUNE</h3>
         </div>
