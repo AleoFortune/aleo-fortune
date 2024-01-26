@@ -31,7 +31,7 @@ const RightBar = (props: Props) => {
           <Button onClick={connect} className="hidden xl:flex mx-auto">
             Connect
           </Button>
-          <Button size={"xs"} className="xl:hidden px-2 text-sm py-1" onClick={connect}>
+          <Button size={"xs"} onClick={connect}>
             Connect
           </Button>
         </div>

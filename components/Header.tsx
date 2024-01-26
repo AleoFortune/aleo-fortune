@@ -34,29 +34,44 @@ const Header = (props: Props) => {
       suppressHydrationWarning
       className={cn(props.className, "h-24 font-bold text-2xl border-b-[1px] border-gray-500 bg-muted")}
     >
-      <div className="flex justify-between items-center h-full px-4">
+      <div className="flex justify-between items-center h-full px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px]">
         <div className="flex gap-2 items-center">
-          <div className="rounded-full overflow-hidden">
-            <Image alt="aleo fortune logo" src={aleoFortuneLogo} width={80}></Image>
+          <div className="rounded-full overflow-hidden relative w-[56px] md:w-[67px] lg:w-[73px] xl:w-[80px] h-[56px] md:h-[67px] lg:h-[73px] xl:h-[80px]">
+            <Image alt="aleo fortune logo" src={aleoFortuneLogo} fill></Image>
           </div>
-          <h3>ALEO FORTUNE</h3>
+          <h3 className="text-[14px] md:text-[16x] lg:text-[20px] xl:text-[24px]">ALEO FORTUNE</h3>
         </div>
         {/* <h3>roulette.</h3> */}
 
         {!account && (
-          <Button size={"lg"} onClick={connect}>
-            Connect Wallet
-          </Button>
+          <>
+            <Button size={"lg"} onClick={connect} className="hidden xl:flex">
+              Connect Wallet
+            </Button>
+            <Button size={"xs"} onClick={connect}>
+              Connect Wallet
+            </Button>
+          </>
         )}
         {account && (
-          <Button size={"lg"} onClick={disconnect} disabled={loading}>
-            {shortenAddress(account.address)}
-          </Button>
+          <>
+            <Button size={"lg"} onClick={disconnect} disabled={loading} className="hidden xl:flex">
+              {shortenAddress(account.address)}
+            </Button>
+            <Button size={"xs"} onClick={disconnect} disabled={loading}>
+              {shortenAddress(account.address)}
+            </Button>
+          </>
         )}
         {!account && (
-          <Button size={"lg"} onClick={disconnect} disabled={loading}>
-            LOG OUT
-          </Button>
+          <>
+            <Button size={"lg"} onClick={disconnect} disabled={loading} className="hidden xl:flex">
+              LOG OUT
+            </Button>
+            <Button size={"xs"} onClick={disconnect} disabled={loading}>
+              LOG OUT
+            </Button>
+          </>
         )}
       </div>
     </div>

@@ -140,6 +140,7 @@ const MainContent = (props: Props) => {
           disabled={isBetButtonDisabled || isGamePlaying}
           variant={"default"}
           size={"xs"}
+          className="mx-0"
           onClick={() => {
             setBetButtonDisabled(true);
             placeBetMutation.mutate();
