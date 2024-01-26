@@ -24,7 +24,7 @@ const SelectionSection = (props: Props) => {
   const orderedData = reorderArray(data);
 
   return (
-    <div className="w-96 flex h-[600px]">
+    <div className="w-[90%] max-w-96 md:w-96 flex aspect-[384/600]">
       <div className="mt-[49px] text-center flex flex-col justify-between w-24 bg-green-900 border border-white rounded-tl-sm rounded-bl-sm">
         <button
           className={`flex-1 text-center flex items-center justify-center border-b-2 border-white cursor-pointer rounded-tl-sm ${

@@ -102,15 +102,14 @@ const MainContent = (props: Props) => {
     <Card
       className={cn(
         props.className,
-        "mt-4 rounded-lg px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px] py-1 md:py-2 lg:py-5 xl:py-6"
+        "mt-4 rounded-lg px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px] py-1 md:py-2 lg:py-5 xl:py-6 flex flex-col"
       )}
     >
-      <Card className="px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px] py-1 md:py-2 lg:py-5 xl:py-6 mb-12 flex items-center justify-between">
+      <Card className="px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px] py-1 md:py-2 lg:py-5 xl:py-6 xl:mb-12 flex items-center justify-between">
         <p className=" font-bold text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
           Selected Bet: <span className="text-red-400">{selection}</span>
         </p>
         <Separator orientation="vertical" className="h-6"></Separator>
-
         <Label
           htmlFor="bet"
           className="whitespace-nowrap font-bold text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px]"
@@ -123,7 +122,7 @@ const MainContent = (props: Props) => {
           className="w-[64px] md:w-[107px] lg:w-[117px] xl:w-[128px]"
           type="number"
           onChange={(e) => setUserBet(e.target.value)}
-        />
+        />{" "}
         <Button
           disabled={isBetButtonDisabled || isGamePlaying}
           variant={"default"}
@@ -136,22 +135,22 @@ const MainContent = (props: Props) => {
         >
           Place Bet
         </Button>
-        <Button
-          disabled={isBetButtonDisabled || isGamePlaying}
-          variant={"default"}
-          size={"xs"}
-          className="mx-0"
-          onClick={() => {
-            setBetButtonDisabled(true);
-            placeBetMutation.mutate();
-          }}
-        >
-          Place Bet
-        </Button>
       </Card>
+      <Button
+        disabled={isBetButtonDisabled || isGamePlaying}
+        variant={"default"}
+        size={"xs"}
+        className="mb-6 md:mb-8 lg:mb-10 mt-3 w-[40vw] max-w-60"
+        onClick={() => {
+          setBetButtonDisabled(true);
+          placeBetMutation.mutate();
+        }}
+      >
+        Place Bet
+      </Button>
 
       {gameEventID && (
-        <Card className="text-center mb-12 flex justify-between items-center gap-4">
+        <Card className="text-center mb-6 md:mb-8 lg:mb-10 xl:mb-12 flex justify-between items-center gap-4">
           <div className="flex-1">
             <p className="font-bold text-base">Current Game</p>
             <span className="text-sm">{gameEventID}</span>
