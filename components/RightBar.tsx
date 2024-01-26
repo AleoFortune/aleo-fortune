@@ -22,15 +22,10 @@ const RightBar = (props: Props) => {
   });
 
   return (
-    <Card
-      className={cn(
-        props.className,
-        "mt-4 rounded-lg px-4 py-4 flex flex-col gap-4 justify-start"
-      )}
-    >
+    <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-4 flex flex-col gap-4 justify-start")}>
       {!account && (
         <div className="text-center">
-          <p className="font-bold text-xl">
+          <p className="font-bold text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
             Connect your wallet to start playing!
           </p>
           <Button onClick={connect}>Connect</Button>
@@ -45,16 +40,24 @@ const RightBar = (props: Props) => {
               {isLoading ? "Getting Balance" : `${fortuneCredit} Fortune Credits`}
             </Badge>
           </div>
-          <div className="flex flex-col gap-3"> {/* Adjusted gap between buttons */}
+          <div className="flex flex-col gap-3">
+            {" "}
+            {/* Adjusted gap between buttons */}
             <p className="font-semibold">Deposit and Withdraw Fortune Token (Wrapped Aleo Token):</p>
-            <div className="flex flex-col gap-3"> {/* Adjusted gap between buttons */}
+            <div className="flex flex-col gap-3">
+              {" "}
+              {/* Adjusted gap between buttons */}
               <AddCreditDialog />
               <WithdrawCreditDialog />
             </div>
           </div>
-          <div className="flex flex-col gap-3"> {/* Adjusted gap between buttons */}
+          <div className="flex flex-col gap-3">
+            {" "}
+            {/* Adjusted gap between buttons */}
             <p className="font-semibold">Deposit and Withdraw Aleo Token:</p>
-            <div className="flex flex-col gap-3"> {/* Adjusted gap between buttons */}
+            <div className="flex flex-col gap-3">
+              {" "}
+              {/* Adjusted gap between buttons */}
               <AddAleoCreditDialog />
               <WithdrawAleoCreditDialog />
             </div>
@@ -63,7 +66,10 @@ const RightBar = (props: Props) => {
             <p className="font-semibold">Game Rules:</p>
             <ul className="list-disc ml-6">
               <li>Deposit some Aleo token to get Fortune token</li>
-              <li>Select a bet (odd even bet: 2x, black and red bet: 2x, Dozen bet (1-12. 13-24, 25-36) : 3x, Straightup bet: 36x, Low-High bet (1-18, 19-36): 2x )</li>
+              <li>
+                Select a bet (odd even bet: 2x, black and red bet: 2x, Dozen bet (1-12. 13-24, 25-36) : 3x, Straightup
+                bet: 36x, Low-High bet (1-18, 19-36): 2x )
+              </li>
               <li>Select a bet amount</li>
               <li>Enjoy playing</li>
               <li>To cashout, withdraw your Fortune token first</li>

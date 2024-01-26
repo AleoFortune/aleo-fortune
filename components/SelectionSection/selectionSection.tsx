@@ -17,9 +17,7 @@ const SelectionSection = (props: Props) => {
 
   const { selection, setSelection } = gamePlayContext;
   const reorderArray = (inputArray: RouletteItem[]): RouletteItem[] => {
-    const sortedArray = [...inputArray].sort(
-      (a, b) => parseInt(a.option) - parseInt(b.option)
-    );
+    const sortedArray = [...inputArray].sort((a, b) => parseInt(a.option) - parseInt(b.option));
     return sortedArray;
   };
 
@@ -98,12 +96,8 @@ const SelectionSection = (props: Props) => {
               key={item.option}
               className={cn(
                 `${
-                  item.style.backgroundColor === "black"
-                    ? "bg-gray-900"
-                    : "bg-red-700"
-                } flex justify-center border border-white ${
-                  selection === item.option ? "bg-green-500" : ""
-                } py-2 ${
+                  item.style.backgroundColor === "black" ? "bg-gray-900" : "bg-red-700"
+                } flex justify-center border border-white ${selection === item.option ? "bg-green-500" : ""} py-2 ${
                   index === 34 ? "" : index === 36 && ""
                 } hover:scale-110 transition-all cursor-pointer`
               )}

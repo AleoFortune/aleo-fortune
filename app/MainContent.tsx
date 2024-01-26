@@ -1,9 +1,6 @@
 "use client";
 
-const RouletteWheel = dynamic(
-  () => import("@/components/RouletteWheel/RouletteWheel"),
-  { ssr: false }
-);
+const RouletteWheel = dynamic(() => import("@/components/RouletteWheel/RouletteWheel"), { ssr: false });
 
 import SelectionSection from "@/components/SelectionSection/selectionSection";
 import { Button } from "@/components/ui/button";
@@ -102,20 +99,28 @@ const MainContent = (props: Props) => {
   }, [gameEventID, data]);
 
   return (
-    <Card className={cn(props.className, "mt-4 rounded-lg px-4 py-6")}>
-      <Card className="px-4 py-6 mb-12 flex items-center gap-4 justify-between">
-        <p className=" font-bold text-xl">
+    <Card
+      className={cn(
+        props.className,
+        "mt-4 rounded-lg px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px] py-1 md:py-2 lg:py-5 xl:py-6"
+      )}
+    >
+      <Card className="px-[8px] md:px-[10px] lg:px-[13px] xl:px-[16px] py-1 md:py-2 lg:py-5 xl:py-6 mb-12 flex items-center justify-between">
+        <p className=" font-bold text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px]">
           Selected Bet: <span className="text-red-400">{selection}</span>
         </p>
         <Separator orientation="vertical" className="h-6"></Separator>
 
-        <Label htmlFor="bet" className="whitespace-nowrap font-bold text-xl">
+        <Label
+          htmlFor="bet"
+          className="whitespace-nowrap font-bold text-[12px] md:text-[16px] lg:text-[18px] xl:text-[20px]"
+        >
           Bet Amount
         </Label>
         <Input
           id="bet"
           value={userBet || ""}
-          className="w-32"
+          className="w-[64px] md:w-[107px] lg:w-[117px] xl:w-[128px]"
           type="number"
           onChange={(e) => setUserBet(e.target.value)}
         />
@@ -123,6 +128,19 @@ const MainContent = (props: Props) => {
           disabled={isBetButtonDisabled || isGamePlaying}
           variant={"default"}
           size={"lg"}
+          className="hidden xl:flex"
+          onClick={() => {
+            setBetButtonDisabled(true);
+            placeBetMutation.mutate();
+          }}
+        >
+          Place Bet
+        </Button>
+        <Button
+          disabled={isBetButtonDisabled || isGamePlaying}
+          variant={"default"}
+          size={"sm"}
+          className="xl:hidden px-2 text-sm py-1"
           onClick={() => {
             setBetButtonDisabled(true);
             placeBetMutation.mutate();
@@ -139,13 +157,11 @@ const MainContent = (props: Props) => {
             <span className="text-sm">{gameEventID}</span>
           </div>
           {!startSpin && <Spinner />}
-          <p className="font-bold text-base justify-end flex-1">
-            Spin will start in a minute, do not refresh the page
-          </p>
+          <p className="font-bold text-base justify-end flex-1">Spin will start in a minute, do not refresh the page</p>
         </Card>
       )}
 
-      <div className="flex justify-center">
+      <div className="flex flex-col gap-4 xl:flex-row justify-center items-center xl:items-start">
         {!gameEventID && <SelectionSection />}
         <RouletteWheel />
       </div>
