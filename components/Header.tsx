@@ -39,7 +39,7 @@ const Header = (props: Props) => {
           <div className="rounded-full overflow-hidden relative w-[56px] md:w-[67px] lg:w-[73px] xl:w-[80px] h-[56px] md:h-[67px] lg:h-[73px] xl:h-[80px]">
             <Image alt="aleo fortune logo" src={aleoFortuneLogo} fill></Image>
           </div>
-          <h3 className="text-[14px] md:text-[16x] lg:text-[20px] xl:text-[24px]">ALEO FORTUNE</h3>
+          <h3 className="text-[14px] md:text-[16x] lg:text-[20px] xl:text-[24px]">FORTUNE</h3>
         </div>
         {/* <h3>roulette.</h3> */}
 

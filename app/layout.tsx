@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <PuzzleWalletProvider
-        dAppName="Aleo Fortune"
+        dAppName="Fortune"
         dAppDescription="A Roulette Game"
         dAppUrl=""
         dAppIconURL=""
