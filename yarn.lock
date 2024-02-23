@@ -398,12 +398,12 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@puzzlehq/sdk@^0.1.52":
-  version "0.1.52"
-  resolved "https://registry.yarnpkg.com/@puzzlehq/sdk/-/sdk-0.1.52.tgz#13ff9d88a49bfdfc0c92e0323370853008cd6780"
-  integrity sha512-esAnHPCKvjYHhDbdHHHX09IGhz+QZf2m2+mWCDIuPqrIdOVQWDeHtZq3MGw7myplhgJysIWFWofs3hlRoPXXfQ==
+"@puzzlehq/sdk@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@puzzlehq/sdk/-/sdk-0.2.5.tgz#45be4d1623fa89cb8b0edb99cd607a4f05bbf0c3"
+  integrity sha512-yLRsszfS1R8aCPEYQUcDYjo4sTjBj7v+Lzo2bDv5wBk7haZVHtbuMbKZa7sDIswJEIUB9Pa3jEM0mAJF6HOgNQ==
   dependencies:
-    "@puzzlehq/types" "1.0.8"
+    "@puzzlehq/types" "1.0.11"
     "@tanstack/react-query" "^4.29.5"
     "@tanstack/react-query-devtools" "^5.13.5"
     "@trpc/client" "^10.9.0"
@@ -424,10 +424,10 @@
     ws "^8.13.0"
     zustand "^4.3.9"
 
-"@puzzlehq/types@1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@puzzlehq/types/-/types-1.0.8.tgz#a36512cbebc13a76d2fc936b804d55b921551b7d"
-  integrity sha512-rYLhMBU6NAqWmw9mApWN2f7jwswDgAZ/YV5MfEx7vPmulqm2+3gkFJoRXT+AfB/NhfIcRPNtp3Ct0x+Phwk36Q==
+"@puzzlehq/types@1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@puzzlehq/types/-/types-1.0.11.tgz#3db6ad85cafa69436413d3f71d8cd79aa8538142"
+  integrity sha512-Elk1gs+RxTR3zBGdENpH3TMdp6aQaO17bI+ubfkbAPW6gN4PyYicN4z++TQCCvXwtIarOr0I2K0kLe8yQAIovw==
   dependencies:
     zod "3.21.1"
 
